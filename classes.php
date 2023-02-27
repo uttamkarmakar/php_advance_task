@@ -5,6 +5,7 @@
   //Using GuzzleHttp class from the vendor folder.
   use GuzzleHttp\Client;
 
+  define("string","https://ir-dev-d9.innoraft-sites.com");
 class FetchData {
   /**
    * @var $title
@@ -32,9 +33,7 @@ class FetchData {
  * @method FetchJsonContent()
  *  Storing all the field_services value except which are NULL into an array.
  */
-
 class PutData {
-  
   public $dataArray = array();
   /**
    * Converts all the Json url to php form
@@ -73,8 +72,8 @@ class PutData {
         $objData->title_value = ($data['data'][$i]['attributes']['field_services']['processed']);
         $image = $data['data'][$i]['relationships']['field_image']['links']['related']['href'];
         $image_data = $this->FetchJsonData($image);
-        $objData->ImageSource = "https://ir-dev-d9.innoraft-sites.com" . $image_data['data']['attributes']['uri']['url'];
-        $objData->exploreLink = "https://ir-dev-d9.innoraft-sites.com" . $data['data'][$i]['attributes']['path']['alias'];
+        $objData->ImageSource = constant("string") . $image_data['data']['attributes']['uri']['url'];
+        $objData->exploreLink = constant("string") . $data['data'][$i]['attributes']['path']['alias'];
         array_push($this->dataArray, $objData);
       }
     }
